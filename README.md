@@ -68,6 +68,9 @@ mysqlUser: database
 mysqlPass: password
 mysqlDBName: name
 
+# Sqlite3 Database Location
+sqlite3DbPath: ../CoreProtect/database.db
+
 # The table name prefix for all core protect tables
 tableNamePrefix: co_
 ```
