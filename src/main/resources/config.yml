@@ -1,0 +1,11 @@
+# Toggleable chats
+toggleableChats:
+  # The following are chats from the McMMO plugin, you can remove these and add your own server's toggleable chat commands
+  partyChat:
+    toggleCommand: /p
+    messageCommand:
+      - /p <msg>
+      - /pc <msg>
+  adminChat:
+    toggleCommand: /a
+    messageCommand: /a <msg>

@@ -1,3 +1,51 @@
 main: com.kingcreator11.coreprotecthelper.CoreProtectHelperPlugin
 name: CoreProtectHelper
 version: 1.0
+description: This plugin is a simple core protect helper for searching within the database
+prefix: COHelper
+depend: [CoreProtect]
+commands:
+  coh:
+    description: The main core protect helper command - all other commands in this plugin are within this
+    usage: /<command>
+    permission: coreprotecthelper.usage
+  cohelper:
+    description: The main core protect helper command - all other commands in this plugin are within this
+    usage: /<command>
+    permission: coreprotecthelper.usage
+permissions:
+  coreprotecthelper.*:
+    description: Allows access to all commands within the plugin.
+    default: op
+    children:
+      coreprotecthelper.usage:
+        description: Allows access to all non-searching commands in the plugin. This permission is also required for searching commands.
+        default: op
+      coreprotecthelper.search.*:
+        description: Wildcard permission for all searching commands
+        default: op
+        children:
+          coreprotecthelper.search.container:
+            description: Allows access to the `/coh search container` command
+            default: op
+          coreprotecthelper.search.kill:
+            description: Allows access to the `/coh search kill` command
+            default: op
+          coreprotecthelper.search.blocks:
+            description: Allows access to the `/coh search blocks` command
+            default: op
+          coreprotecthelper.search.users:
+            description: Allows access to the `/coh search users` command
+            default: op
+          coreprotecthelper.search.chat:
+            description: Allows access to the `/coh search chat` command
+            default: op
+          coreprotecthelper.search.sign:
+            description: Allows access to the `/coh search sign` command
+            default: op
+          coreprotecthelper.search.command:
+            description: Allows access to the `/coh search command` command
+            default: op
+          coreprotecthelper.search.toggleableChat:
+            description: Allows access to the `/coh search toggleablechat` command
+            default: op
