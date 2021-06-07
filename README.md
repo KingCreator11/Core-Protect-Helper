@@ -38,7 +38,7 @@ For all commands, you can use `/cohelper` or `/coh`, both do the same thing.
 |---------|-------------|-------------|
 | `/coh settimezone +/-n` | coreprotecthelper.usage | Sets the timezone shift for timeframes from utc |
 | `/coh settimeframe fromtimepast <days>d<hours>h<minutes>m` | coreprotecthelper.usage | Sets the timeframe from the time of the search to the past n time |
-| `/coh settimeframe fromtimepast <days>d<hours>h<minutes>m - <days>d<hours>h<minutes>m` | coreprotecthelper.usage | Restricts future searches for the user to the time range given. Each time variable is the time past from now eg 5d - 1d is between the past 5-1 days. |
+| `/coh settimeframe fromtimepastrange <days>d<hours>h<minutes>m - <days>d<hours>h<minutes>m` | coreprotecthelper.usage | Restricts future searches for the user to the time range given. Each time variable is the time past from now eg 5d - 1d is between the past 5-1 days. |
 | `/coh settimeframe fromdates <year>-<month>-<day>:<hours>:<minutes> - <year>-<month>-<day>:<hours>:<minutes>` | coreprotecthelper.usage | Restricts future searches for the user to the time range given. |
 | `/coh cleartimeframe` | coreprotecthelper.usage | Clears any time frame restrictions on the search for future searches. |
 
