@@ -12,6 +12,7 @@ For all commands, you can use `/cohelper` or `/coh`, both do the same thing.
 
 ### Search Commands
 > Note: All searching commands requires `coreprotecthelper.usage` as well as the permission listed below
+
 | Command | Permissions | Description |
 |---------|-------------|-------------|
 | `/coh search container <add/remove/all> (OPTIONAL)<list of blocks/items> (OPTIONAL)e:<list of blocks/items>` | coreprotecthelper.search.container | Searches through container logs given a list of blocks/items, and a list of blocks/items to exclude |
