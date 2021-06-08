@@ -16,15 +16,29 @@
 
 package com.kingcreator11.coreprotecthelper.Command;
 
+/**
+ * Exception class for invalid commands
+ */
 public class InvalidCommandException extends Exception {
 
+	/**
+	 * The error message of whats wrong with the command
+	 */
 	private String msg;
 
+	/**
+	 * Creates a new invalid command exception
+	 * @param msg The message of whats wrong with the command
+	 */
 	public InvalidCommandException(String msg) {
 		super(msg);
 		this.msg = msg;
 	}
 
+	/**
+	 * Gets the message of whats wrong with the command
+	 * @return The message of whats wrong with the command
+	 */
 	public String getMsg() {
 		return msg;
 	}
