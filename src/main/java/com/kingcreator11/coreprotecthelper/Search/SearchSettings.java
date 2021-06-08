@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.kingcreator11.coreprotecthelper.Misc.Vector3;
-
+import org.bukkit.Location;
 import org.bukkit.World;
 
 /**
@@ -32,8 +31,8 @@ public class SearchSettings {
 	/**
 	 * Type of location restriction used for filtering
 	 */
-	enum LocationRestrictionType {
-		box, sphere, global
+	public enum LocationRestrictionType {
+		box, sphere, world, global
 	}
 	
 	/**
@@ -54,12 +53,12 @@ public class SearchSettings {
 	/**
 	 * The location restriction type used for searching
 	 */
-	public LocationRestrictionType locationRestrictionType;
+	public LocationRestrictionType locationRestrictionType = LocationRestrictionType.global;
 
 	/**
-	 * The world to search within
+	 * The location to use for the radius - Only used with sphere searches
 	 */
-	public World world;
+	public Location radiusLocation;
 
 	/**
 	 * The radius of the search - Only used with sphere searches
@@ -69,12 +68,17 @@ public class SearchSettings {
 	/**
 	 * The first position in the box - Only used with box searches
 	 */
-	public Vector3 pos1;
+	public Location pos1;
 
 	/**
 	 * The second position in the box - Only used with box searches
 	 */
-	public Vector3 pos2;
+	public Location pos2;
+
+	/**
+	 * The world used for the search - Only used with world searches
+	 */
+	public World world;
 	
 	/**
 	 * A list of players to restrict to
@@ -93,14 +97,17 @@ public class SearchSettings {
 	public SearchSettings(SearchSettings other) {
 		if (other == null) return;
 		this.timezoneHours = other.timezoneHours;
-		this.fromTime = new Date(other.fromTime.getTime());
-		this.toTime = new Date(other.toTime.getTime());
+		this.fromTime = other.fromTime == null ? null : new Date(other.fromTime.getTime());
+		this.toTime = other.toTime == null ? null : new Date(other.toTime.getTime());
 		this.locationRestrictionType = other.locationRestrictionType;
-		this.world = other.world;
+		this.radiusLocation = other.radiusLocation == null ? null :
+			new Location(other.radiusLocation.getWorld(), other.radiusLocation.getX(),
+			other.radiusLocation.getY(), other.radiusLocation.getZ());
 		this.radius = other.radius;
-		this.pos1 = new Vector3(other.pos1);
-		this.pos2 = new Vector3(other.pos2);
-		this.restrictPlayers = new ArrayList<>(other.restrictPlayers);
-		this.excludePlayers = new ArrayList<>(other.excludePlayers);
+		this.pos1 = other.pos1 == null ? null : new Location(other.pos1.getWorld(), other.pos1.getX(), other.pos1.getY(), other.pos1.getZ());
+		this.pos2 = other.pos2 == null ? null : new Location(other.pos2.getWorld(), other.pos2.getX(), other.pos2.getY(), other.pos2.getZ());
+		this.world = other.world;
+		this.restrictPlayers = other.restrictPlayers == null ? new ArrayList<>() : new ArrayList<>(other.restrictPlayers);
+		this.excludePlayers = other.excludePlayers == null ? new ArrayList<>() : new ArrayList<>(other.excludePlayers);
 	}
 }

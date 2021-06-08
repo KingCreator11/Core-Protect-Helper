@@ -45,9 +45,9 @@ For all commands, you can use `/cohelper` or `/coh`, both do the same thing.
 #### User Commands
 | Command | Permissions | Description |
 |---------|-------------|-------------|
-| `/coh restrictusers list <list of users separated by ,>` | coreprotecthelper.usage | Restricts the search to only include users in the list |
+| `/coh restrictusers list <list of users separated by spaces>` | coreprotecthelper.usage | Restricts the search to only include users in the list |
 | `/coh restrictusers fromsearch name` | coreprotecthelper.usage | Restricts the search to only include users from a user search named `name` |
-| `/coh excludeusers list <list of users separated by ,>` | coreprotecthelper.usage | Excludes the users in the list from the search |
+| `/coh excludeusers list <list of users separated by spaces>` | coreprotecthelper.usage | Excludes the users in the list from the search |
 | `/coh excludeusers fromsearch name` | coreprotecthelper.usage | Excludes the users from a search from a user search named `name` |
 | `/coh clearusersrestrictions` | coreprotecthelper.usage | Clears any user based restrictions placed for future searches. |
 

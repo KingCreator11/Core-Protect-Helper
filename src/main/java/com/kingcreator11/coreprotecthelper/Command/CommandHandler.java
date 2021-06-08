@@ -199,7 +199,7 @@ public class CommandHandler extends CPHBase implements CommandExecutor, TabCompl
 				"§3/coh restrictusers fromsearch §c<name>"),
 			new CommandMeta("list", "coreprotecthelper.usage",
 				"§bRestricts the search to only include users in the list",
-				"§3/coh restrictusers list §c<list of users separated by ,>")
+				"§3/coh restrictusers list §c<list of users separated by spaces>")
 		));
 
 		// Exclude users sub commands
@@ -209,7 +209,7 @@ public class CommandHandler extends CPHBase implements CommandExecutor, TabCompl
 				"§3/coh excludeusers fromsearch §c<name>"),
 			new CommandMeta("list", "coreprotecthelper.usage",
 				"§bExcludes the users in the list from the search",
-				"§3/coh excludeusers list §c<list of users separated by ,>")
+				"§3/coh excludeusers list §c<list of users separated by spaces>")
 		));
 
 		subCommands = Collections.unmodifiableMap(map);
@@ -267,7 +267,8 @@ public class CommandHandler extends CPHBase implements CommandExecutor, TabCompl
 
 		// Command is a settings command
 		try {
-			searchSettings.put(sender, SettingsHandler.handleSettingsCommand(args, searchSettings.get(sender), sender));
+			searchSettings.put(sender, new SettingsHandler(args, searchSettings.get(sender), sender, this.plugin)
+				.getUpdatedSearchSettings());
 		}
 		catch (InvalidCommandException error) {
 			sender.sendMessage("§4Invalid Command - " + error.getMsg());
