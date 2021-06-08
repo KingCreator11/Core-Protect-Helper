@@ -16,6 +16,7 @@
 
 package com.kingcreator11.coreprotecthelper.Search;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -84,4 +85,22 @@ public class SearchSettings {
 	 * A list of players to exclude
 	 */
 	public List<String> excludePlayers;
+
+	/**
+	 * Copy Constructor
+	 * @param other Other object to copy from
+	 */
+	public SearchSettings(SearchSettings other) {
+		if (other == null) return;
+		this.timezoneHours = other.timezoneHours;
+		this.fromTime = new Date(other.fromTime.getTime());
+		this.toTime = new Date(other.toTime.getTime());
+		this.locationRestrictionType = other.locationRestrictionType;
+		this.world = other.world;
+		this.radius = other.radius;
+		this.pos1 = new Vector3(other.pos1);
+		this.pos2 = new Vector3(other.pos2);
+		this.restrictPlayers = new ArrayList<>(other.restrictPlayers);
+		this.excludePlayers = new ArrayList<>(other.excludePlayers);
+	}
 }

@@ -14,36 +14,18 @@
    limitations under the License.
 */
 
-package com.kingcreator11.coreprotecthelper.Misc;
+package com.kingcreator11.coreprotecthelper.Command;
 
-/**
- * A simple 3d vector class
- */
-public class Vector3 {
-	/**
-	 * Coordinates
-	 */
-	public int x, y, z;
+public class InvalidCommandException extends Exception {
 
-	/**
-	 * Copy constructor
-	 * @param other object to copy from
-	 */
-	public Vector3(Vector3 other) {
-		this.x = other.x;
-		this.y = other.y;
-		this.z = other.z;
+	private String msg;
+
+	public InvalidCommandException(String msg) {
+		super(msg);
+		this.msg = msg;
 	}
 
-	/**
-	 * Creates a new vector given coordinates
-	 * @param x
-	 * @param y
-	 * @param z
-	 */
-	public Vector3(int x, int y, int z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	public String getMsg() {
+		return msg;
 	}
 }

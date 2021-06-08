@@ -239,13 +239,43 @@ public class CommandHandler extends CPHBase implements CommandExecutor, TabCompl
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-		// No args - empty command. Use as help command
-		if (args.length == 0) {
+		// No args / Invalid first arg. Use as help command
+		if (args.length == 0 || !Arrays.stream(baseCommands).anyMatch(x -> x.name.equals(args[0]))) {
 			this.helpCommand(sender, args);
 			return true;
 		}
 
-		return false;
+		// Search saving
+		if (args[0].toLowerCase().equals("savesearch")) {
+			return true;
+		}
+
+		// Search deleting
+		if (args[0].toLowerCase().equals("deletesearch")) {
+			return true;
+		}
+
+		// Search sending
+		if (args[0].toLowerCase().equals("sendsearch")) {
+			return true;
+		}
+
+		// Search command - run a search
+		if (args[0].toLowerCase().equals("search")) {
+			return true;
+		}
+
+		// Command is a settings command
+		try {
+			searchSettings.put(sender, SettingsHandler.handleSettingsCommand(args, searchSettings.get(sender), sender));
+		}
+		catch (InvalidCommandException error) {
+			sender.sendMessage("§4Invalid Command - " + error.getMsg());
+			this.helpCommand(sender, args);
+			return true;
+		}
+
+		return true;
 	}
 
 	/**
@@ -294,11 +324,32 @@ public class CommandHandler extends CPHBase implements CommandExecutor, TabCompl
 		String message = "§c§l>----- §6§lCore Protect Helper §c§l-----<\n";
 
 		// Send all sub command information
-		if (args.length >= 1 && Arrays.stream(baseCommands).anyMatch(x -> x.name == args[0])) {
+		if (args.length >= 1 && subCommands.containsKey(args[0])) {
 			// Go through all sub commands and provide info
 			for (CommandMeta subData : subCommands.get(args[0])) {
 				message += "§2§lCommand: " + subData.usage + "\n";
 				message += "§2§lDescription: " + subData.description + "\n";
+			}
+		}
+		// Argument length more than 1 but first arg is invalid - filter by first arg
+		else if (args.length >= 1) {
+			// Loop through the commands
+			for (CommandMeta data : baseCommands) {
+				// Filter by first arg
+				if (!data.name.contains(args[0])) continue;
+				// Command has subcommands
+				if (data.description == null || data.usage == null) {
+					// Go through all sub commands and provide info
+					for (CommandMeta subData : subCommands.get(data.name)) {
+						message += "§2§lCommand: " + subData.usage + "\n";
+						message += "§2§lDescription: " + subData.description + "\n";
+					}
+				}
+				// No sub commands - provide basic info
+				else {
+					message += "§2§lCommand: " + data.usage + "\n";
+					message += "§2§lDescription: " + data.description + "\n";
+				}
 			}
 		}
 		// Send all command information
